@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "create-block/peak-navigation",
+	"version": "0.1.0",
+	"title": "Peak Navigation",
+	"category": "widgets",
+	"icon": "menu",
+	"description": "Navigation specific to the Peak Website",
+	"supports": {
+		"html": false
+	},
+  "attributes": {
+    "navOne": {
+      "type": "array",
+      "default": [
+        { "content": "<a href=\"/team\" data-type=\"page\">Team</a>"},
+        { "content": "<a href=\"/founders\" data-type=\"page\">Founders</a>"},
+        { "content": "<a href=\"/focus\" data-type=\"page\">Focus</a>"},
+        { "content": "<a href=\"/blog\" data-type=\"page\">Thoughts</a>"}
+      ]
+    },
+    "navTwo": {
+      "type": "array",
+      "default": [
+        { "content": "<a href=\"https://jobs.peak.capital/?swcfpc=1\" data-type=\"page\">Jobs</a>"},
+        { "content": "<a href=\"/focus/?swcfpc=1#contact-us\" data-type=\"page\">Contact</a>"}
+      ]
+    }
+  },
+	"textdomain": "peak-navigation",
+	"editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

@@ -1,0 +1,207 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+// ------------------
+//  Setup
+// ------------------
+@mixin mobile-only {
+  @media (max-width: 640px) {
+    @content;
+  }
+}
+@mixin tablet-up {
+  @media (min-width: 640.1px) {
+    @content;
+  }
+}
+.peak-nav {
+  --mobile-height-closed: 33vw;
+  --mobile-height-open: 100vw;
+  --color-coin: var(--wp--preset--color--contrast, #000);
+  --color-coin-inv: var(--wp--preset--color--base, #FFF);
+  position: relative;
+  z-index: 100;
+}
+// Setup Logo
+.peak-nav .peak-logo-svg {
+  transition: transform .4s;
+}
+.peak-nav .peak-logo-svg-circle {
+  fill: var(--color-coin);
+  stroke: var(--color-coin);
+  stroke-width: 1px;
+  transition: fill .4s;
+}
+.peak-nav .peak-logo-svg-letters {
+  fill: var(--color-coin-inv);
+  transition: fill .4s;
+}
+.peak-nav .peak-logo-svg:hover {
+  transform: rotate(180deg);
+}
+.peak-nav .peak-logo-svg:hover .peak-logo-svg-circle {
+  fill: var(--color-coin-inv);
+}
+.peak-nav .peak-logo-svg:hover .peak-logo-svg-letters {
+  fill: var(--color-coin);
+}
+// ----------------
+// Mobile Layout
+// ----------------
+@include mobile-only() {
+
+  .peak-nav {
+    height: calc( var(--mobile-height-closed) + 3 * var(--wp--preset--spacing--outer, 18px) );
+    // background-color: var(--color-coin-inv);
+    color: var(--color-coin);
+    transition: all .3s ease;
+  }
+  .peak-nav-open {
+    --color-coin: var(--wp--preset--color--base, #FFF);
+    --color-coin-inv: var(--wp--preset--color--contrast, #000);
+  }
+  .peak-nav .peak-logo-svg {
+    width: 22.5vw;
+    height: 22.5vw;
+    position: absolute;
+    top: var(--wp--preset--spacing--outer, 18px);
+    left: var(--wp--preset--spacing--outer, 18px);
+    z-index: 2;
+  }
+  .peak-nav-open .peak-logo-svg {
+    transform: rotate(180deg);
+  }
+  .nav-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  .navOne {
+    position: absolute;
+    top: 0;
+    padding-top: calc( var(--mobile-height-closed) + 2 * var(--wp--preset--spacing--outer, 18px) );
+    width: 100%;
+    font-size: 7.4vw;
+    background-color: var(--color-coin-inv);
+    color: var(--color-coin);
+    transform: translateY(-100%);
+    transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    
+    &:after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 150px;
+      background-color: var(--color-coin-inv);
+      clip-path: ellipse(0% 0% at 100% -50%);
+      transition: all .8s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+  }
+  .peak-nav-open .navOne {
+    transform: translateY(0);
+
+    &:after {
+      clip-path: ellipse(150% 150% at -30% -50%);
+    }
+  }
+  .navOne .navList {
+    list-style: none;
+    margin: 0;
+    padding: 0 5px;
+    border-top: 1px solid var(--color-coin);
+
+    & li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--color-coin);
+    }
+    & a {
+      text-decoration: none;
+      color: var(--color-coin);
+      display: block;
+    }
+  }
+  .navTwo {
+    position: relative;
+    height: var(--mobile-height-closed);
+    width: 100%;
+    padding: 15px 0 0 0;
+    font-size: 3.7vw;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .navTwo .navList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    width: 50vw;
+  
+    & li {
+      border-left: 1px solid ;
+      padding: 0 0 0 .5em;
+      flex-basis: 50%;
+      height: var(--mobile-height-closed);
+    }
+    & a {
+      text-decoration: none;
+      color: var(--color-coin);
+      display: block;
+      height: var(--mobile-height-closed);
+    }
+  }
+}
+// -------
+// Desktop
+// -------
+@include tablet-up() {
+  .peak-nav .peak-logo-svg {
+    width: 128px;
+    height: 128px;
+  }
+  .peak-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--wp--preset--spacing--outer, 18px) 0;
+  }
+  .nav-container {
+    display: flex;
+    font-size: var(--wp--preset--font-size--medium, 16px);
+
+    & .navOne,
+    & .navTwo {
+      width: 20vw;
+      border-left: 1px solid var(--wp--preset--color--contrast, #000);
+      padding: 0 0 0 var(--wp--preset--spacing--outer, 18px);
+
+      & .navList {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        & a {
+          font-weight: 700;
+          text-decoration: none;
+          display: inline-block;
+          color: var(--wp--preset--color--contrast, #000);
+          transform: translateX(0);
+          transition: transform .2s ease-out;
+
+          &:hover {
+            transform: translateX(.33em);
+          }
+        }
+      }
+    }
+    .navOne-navList-home {
+      display: none;
+    }
+  }
+
+}
