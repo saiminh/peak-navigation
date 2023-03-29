@@ -55,7 +55,7 @@
 @include mobile-only() {
   header.wp-block-template-part {
     position: relative;
-    z-index: 99998; //(one below the WordPress admin bar)
+    z-index: 999; //(one below the WordPress admin bar)
   }
   .peak-nav {
     height: calc( var(--mobile-height-closed) + 3 * var(--wp--preset--spacing--outer, 18px) );
